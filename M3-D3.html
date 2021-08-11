@@ -142,6 +142,19 @@
                   document.body.appendChild(alert);
                   }
 
+      function errorAlert(msg,duration)
+                  {
+                  let alert = document.createElement("div");
+                  alert.classList.add("alert")
+                  alert.classList.add("alert-danger")
+                  alert.setAttribute("style","position:absolute;top:50%;left:46%;");
+                  alert.innerHTML = msg;
+                  setTimeout(function(){
+                    alert.parentNode.removeChild(alert);
+                  },duration);
+                  document.body.appendChild(alert);
+                  }
+
         const loadfirstData = () => {
                     fetch("https://api.pexels.com/v1/search?query=cats", {
                       method: "GET",
@@ -166,7 +179,6 @@
 
                     }
 
-                    
                     const loadsecondData = () => {
                     fetch("https://api.pexels.com/v1/search?query=dogs", {
                       method: "GET",
@@ -237,6 +249,9 @@
                                 tempAlert(containers.length + " Images loaded",5000);
                         
                      })
+                     .catch((error) => {
+                      errorAlert(error ,5000);
+                     });
                     }
 
                     const loadCarousel = () => {
